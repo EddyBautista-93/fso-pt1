@@ -63,3 +63,6 @@ console.log(object1[fieldName])
 
 object1.address = 'Helsinki'
 object1['secret number'] = 12341
+
+const t = [1, 2, 3]
+const tSquared = t.map(p => p * p)
