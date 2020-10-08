@@ -41,37 +41,53 @@ import ReactDOM from 'react-dom';
 //      </>
 //    )
 // }
-const Hello = (props) => {
- const name = props.name;
- const age = props.age;
+//The props that are passed to the component are now directly de structured into the variables name and age.
 
- const bornYear = () => new Date().getFullYear() - age;
+//This means that instead of assigning the entire props object into a variable called props and then assigning
+// its properties into the variables name and age
+
+const Hello = ({ name, age }) => {
+const bornYear = () => new Date().getFullYear() - age;
   
-//   return (
-//     <div>
-//       <p>
-//         Hello {props.name} , you are {props.age} years old.
-//       </p>
-//       <p> So you were probably born in {bornYear()}</p>
-//     </div>
-//   )
-// } 
-
-const App = () => {
-  const name = 'Peter';
-  const age = 10;
   return (
-    <div>
-      <h1>Greetings </h1>
-      <Hello name="Maya"  age={10} />      
-      <Hello name={name}  age={age} />
-    </div>
+     <div>
+       <p>
+         Hello {name} , you are {age} years old.
+       </p>
+       <p> So you were probably born in {bornYear()}</p>
+     </div>
+   )
+ } 
+//
+// const App = () => {
+// const name = 'Peter';
+// const age = 10;
+// return (
+//    <div>
+//      <h1>Greetings </h1>
+//      <Hello name="Maya"  age={10} />      
+//      <Hello name={name}  age={age} />
+//    </div>
+//  )
+//}
+//
+
+const App = ( props ) => {
+  const { counter } = props;
+  return (
+    <div>{ counter }</div>
   )
 }
 
+let counter = 1;
 
-ReactDOM.render( <App />,
-  document.getElementById('root')
-)
+const refresh = () => {
+  ReactDOM.render(<App counter={counter} />,
+    document.getElementById('root'))
+}
 
+setInterval(() => {
+  refresh()
+  counter += 1
+}, 1000)
 
